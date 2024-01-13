@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import resume from "./docs/Sahil_Resume.pdf";
 import RevealY from "./Transitions/RevealY";
@@ -85,6 +85,20 @@ const StyledHero = styled.section`
   }
 `;
 const Hero = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleMouseDown = () => {
+    setIsClicked(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsClicked(true);
+
+    // After 500 milliseconds, remove the 'clicked' class
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 500);
+  };
   return (
     <StyledHero id="hero">
       <div className="hero-wrapper max-width">
@@ -112,8 +126,9 @@ const Hero = () => {
                 download="Sahil_Resume.pdf"
               >
                 <button
-                  className={`btn btn-download`}
-                  // onClick={() => setIsResumeClicked(true)}
+                  className={`btn ${isClicked ? "clicked" : ""}`}
+                  onMouseDown={handleMouseDown}
+                  onMouseUp={handleMouseUp}
                 >
                   Download CV <i className="fa-solid fa-arrow-down"></i>
                 </button>

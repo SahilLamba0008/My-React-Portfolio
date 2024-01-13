@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import RevealOpacity from "./Transitions/RevealOpacity";
 import RevealY from "./Transitions/RevealY";
+import { Flip, toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const StyledFooter = styled.section`
   margin-top: 2rem;
@@ -31,6 +33,10 @@ const StyledFooter = styled.section`
       i {
         cursor: pointer;
         margin: 0 1rem;
+        transition: color 0.3s ease-in;
+      }
+      i.fa-copy:hover {
+        color: ${({ theme }) => theme.colors.secondary};
       }
     }
   }
@@ -40,9 +46,14 @@ const StyledFooter = styled.section`
     }
     margin: 2rem 0;
     i {
+      color: ${({ theme }) => theme.colors.textSecondary};
       font-size: 2rem;
       margin: 1rem 0.5rem;
       cursor: pointer;
+      transition: color 0.3s ease-in;
+    }
+    i:hover {
+      color: ${({ theme }) => theme.colors.secondary};
     }
   }
   .footer-bottom {
@@ -69,6 +80,22 @@ const StyledFooter = styled.section`
 `;
 
 const Footer = () => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyClick = (value) => {
+    navigator.clipboard.writeText(value);
+    setIsCopied(true);
+    console.log(isCopied);
+    toast("Text Copied!💙", {
+      transition: Flip,
+      theme: "colored",
+    });
+
+    // Reset the 'isCopied' state after some time
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 1500);
+  };
   return (
     <StyledFooter>
       <RevealOpacity>
@@ -85,21 +112,34 @@ const Footer = () => {
           <div className="email contact">
             <i className="fa-regular fa-envelope"></i>
             <span>sahillamba003@gmail.com</span>
-            <i className="fa-regular fa-copy"></i>
+            <i
+              className="fa-regular fa-copy"
+              onClick={() => handleCopyClick("sahillamba003@gmail.com")}
+            ></i>
           </div>
         </RevealY>
         <RevealY>
           <div className="number contact">
             <i className="fa-solid fa-phone"></i>
             <span>+91 8307141156</span>
-            <i className="fa-regular fa-copy"></i>
+            <i
+              className="fa-regular fa-copy"
+              onClick={() => handleCopyClick("+91 8307141156")}
+            ></i>
           </div>
         </RevealY>
         <RevealY>
           <div className="other-media-contacts">
             <p>You may also find me on these platforms!</p>
-            <i className="fa-brands fa-linkedin-in connection-icons"></i>
-            <i className="fa-brands fa-github connection-icons"></i>
+            <Link
+              to="https://www.linkedin.com/in/sahillamba0008/"
+              target="_blank"
+            >
+              <i className="fa-brands fa-linkedin-in connection-icons"></i>
+            </Link>
+            <Link to="https://github.com/SahilLamba0008" target="_blank">
+              <i className="fa-brands fa-github connection-icons"></i>
+            </Link>
           </div>
         </RevealY>
       </div>

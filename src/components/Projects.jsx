@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { projects } from "../constants/data";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -6,6 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 import RevealY from "./Transitions/RevealY";
 import RevealOpacity from "./Transitions/RevealOpacity";
 import { BsStars } from "react-icons/bs";
+import RevealX from "./Transitions/RevealX";
 
 const StyledProjects = styled.section`
   margin-top: 10rem;
@@ -94,13 +95,27 @@ const StyledProjects = styled.section`
 `;
 
 const Projects = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleMouseDown = () => {
+    setIsClicked(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsClicked(true);
+
+    // After 500 milliseconds, remove the 'clicked' class
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 500);
+  };
   return (
     <StyledProjects id="projects">
       <div className="projects-wrapper">
         <RevealY>
           <div className="section-heading">Projects</div>
         </RevealY>
-        <RevealOpacity delay={0.7}>
+        <RevealOpacity delay={0.4}>
           <div className="projects-content">
             <Carousel
               showArrows={false}
@@ -116,32 +131,46 @@ const Projects = () => {
                 <div key={`${project.name} ${index}`} className="project-card">
                   <div className="project-container">
                     <div className="project-left">
-                      <img
-                        className="project-img"
-                        src={project.image}
-                        alt={project.name}
-                      />
+                      <RevealX>
+                        <img
+                          className="project-img"
+                          src={project.image}
+                          alt={project.name}
+                        />
+                      </RevealX>
                     </div>
                     <div className="project-right">
-                      <div className="project-title">{project.name}</div>
-                      <p className="project-description">
-                        {project.description}
-                      </p>
+                      <RevealY>
+                        <div className="project-title">{project.name}</div>
+                      </RevealY>
+                      <RevealY>
+                        <p className="project-description">
+                          {project.description}
+                        </p>
+                      </RevealY>
                       <div className="skills-container">
                         {project.skills.map((skill, index) => (
-                          <span
-                            className="skill"
-                            key={`${project.name} ${skill} ${index}`}
-                          >
-                            {skill}
-                          </span>
+                          <div key={`${project.name} ${skill} ${index}`}>
+                            <RevealY
+                              delay={(index + 1) * 0.15}
+                              delayOverlay={(index + 1) * 0.12}
+                            >
+                              <div className="skill">{skill}</div>
+                            </RevealY>
+                          </div>
                         ))}
                       </div>
                       <div className="links">
-                        <button className="btn">
-                          Show More
-                          <BsStars />
-                        </button>
+                        <RevealY>
+                          <button
+                            className={`btn ${isClicked ? "clicked" : ""}`}
+                            onMouseDown={handleMouseDown}
+                            onMouseUp={handleMouseUp}
+                          >
+                            Show More
+                            <BsStars />
+                          </button>
+                        </RevealY>
                         {/* <button className="btn">Repo</button> */}
                         {/* <button className="btn">Video</button> */}
                       </div>

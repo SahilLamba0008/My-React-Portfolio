@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import RevealY from "./Transitions/RevealY";
 import RevealX from "./Transitions/RevealX";
@@ -56,6 +56,25 @@ const StyledContact = styled.section`
 `;
 
 const Contact = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleMouseDown = () => {
+    setIsClicked(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsClicked(true);
+
+    // After 500 milliseconds, remove the 'clicked' class
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 500);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+  };
+  
   return (
     <StyledContact id="contact">
       <RevealY>
@@ -109,7 +128,14 @@ const Contact = () => {
               ></textarea>
             </RevealY>
             <RevealY>
-              <button type="submit" className="btn" style={{ width: "100%" }}>
+              <button
+                type="submit"
+                className={`btn ${isClicked ? "clicked" : ""}`}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+                style={{ width: "100%" }}
+                onClick={handleFormSubmit}
+              >
                 Submit
               </button>
             </RevealY>

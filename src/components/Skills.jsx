@@ -45,7 +45,10 @@ const Skills = () => {
           {skills.map((skill, index) => {
             return (
               <div key={index}>
-                <RevealY delay={(index + 1) * 0.1}>
+                <RevealY
+                  delay={(index + 1) * 0.15}
+                  delayOverlay={(index + 1) * 0.12}
+                >
                   <div className="skill-wrapper">
                     <img
                       src={skill.image}

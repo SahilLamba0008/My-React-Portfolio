@@ -1,17 +1,11 @@
 import React from "react";
-// import {
-//   About,
-//   Contact,
-//   Footer,
-//   Hero,
-//   Nav,
-//   Projects,
-//   Skills,
-// } from "./components/index";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyle";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
+import "./index.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const theme = {
   colors: {
@@ -37,6 +31,19 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
         <GlobalStyles />
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          style={{ width: "200px", textAlign: "center" }}
+        />
       </Router>
     </ThemeProvider>
   );
