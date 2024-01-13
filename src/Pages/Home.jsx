@@ -15,7 +15,7 @@ const StyledHome = styled.section``;
 const Home = () => {
   return (
     <StyledHome>
-      <div className="home">
+      <div className="home" id="home">
         <Nav />
         <Hero />
         <About />
