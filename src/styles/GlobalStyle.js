@@ -36,6 +36,45 @@ export const GlobalStyles = createGlobalStyle`
         text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         cursor: pointer;
         white-space: nowrap;
+        color: ${({ theme }) => theme.colors.primaryAlternate};
+        overflow: hidden;
+        position: relative;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 0%;
+      background: linear-gradient(45deg, ${({ theme }) =>
+        theme.colors.primaryAlternate}, ${({ theme }) => theme.colors.primary});
+      transition: all 0.5s ease-in-out;
+      z-index: 0;
+      border-radius: 0 0 0.8rem 0;
+    }
+
+    .btn:hover::before {
+      height: 100%;
+      width: 100%;
+      color: ${({ theme }) => theme.colors.textPrimary};
+    }
+    .btn::after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0%;
+      height: 0%;
+      background: linear-gradient(45deg, ${({ theme }) =>
+        theme.colors.primaryAlternate}, ${({ theme }) => theme.colors.primary});
+      transition: all 0.5s ease-in-out;
+      z-index: 0;
+      border-radius: 0 0 0.8rem 0;
+    }
+    .btn:hover::after{
+      height: 100%;
+      width: 100%;
     }
 
     .section-heading{

@@ -1,15 +1,17 @@
 import React from "react";
-import {
-  About,
-  Contact,
-  Footer,
-  Hero,
-  Nav,
-  Projects,
-  Skills,
-} from "./components/index";
+// import {
+//   About,
+//   Contact,
+//   Footer,
+//   Hero,
+//   Nav,
+//   Projects,
+//   Skills,
+// } from "./components/index";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./styles/GlobalStyle";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
 
 const theme = {
   colors: {
@@ -30,16 +32,12 @@ const theme = {
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <div className="App">
-        <Nav />
-        <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Contact />
-        <Footer />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+        <GlobalStyles />
+      </Router>
     </ThemeProvider>
   );
 }

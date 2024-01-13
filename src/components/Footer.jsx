@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import RevealOpacity from "./Transitions/RevealOpacity";
+import RevealY from "./Transitions/RevealY";
 
 const StyledFooter = styled.section`
   margin-top: 2rem;
@@ -69,30 +71,42 @@ const StyledFooter = styled.section`
 const Footer = () => {
   return (
     <StyledFooter>
-      <div className="section-heading footer-heading">Get in touch</div>
-      <p>
-        What’s next? Feel free to reach out to me if you're looking for a
-        developer, have a query, or simply want to connect.
-      </p>
+      <RevealOpacity>
+        <div className="section-heading footer-heading">Get in touch</div>
+      </RevealOpacity>
+      <RevealOpacity>
+        <p>
+          What’s next? Feel free to reach out to me if you're looking for a
+          developer, have a query, or simply want to connect.
+        </p>
+      </RevealOpacity>
       <div className="contacts">
-        <div className="email contact">
-          <i className="fa-regular fa-envelope"></i>
-          <span>sahillamba003@gmail.com</span>
-          <i className="fa-regular fa-copy"></i>
-        </div>
-        <div className="number contact">
-          <i className="fa-solid fa-phone"></i>
-          <span>+91 8307141156</span>
-          <i className="fa-regular fa-copy"></i>
-        </div>
-        <div className="other-media-contacts">
-          <p>You may also find me on these platforms!</p>
-          <i className="fa-brands fa-linkedin-in connection-icons"></i>
-          <i className="fa-brands fa-github connection-icons"></i>
-        </div>
+        <RevealY>
+          <div className="email contact">
+            <i className="fa-regular fa-envelope"></i>
+            <span>sahillamba003@gmail.com</span>
+            <i className="fa-regular fa-copy"></i>
+          </div>
+        </RevealY>
+        <RevealY>
+          <div className="number contact">
+            <i className="fa-solid fa-phone"></i>
+            <span>+91 8307141156</span>
+            <i className="fa-regular fa-copy"></i>
+          </div>
+        </RevealY>
+        <RevealY>
+          <div className="other-media-contacts">
+            <p>You may also find me on these platforms!</p>
+            <i className="fa-brands fa-linkedin-in connection-icons"></i>
+            <i className="fa-brands fa-github connection-icons"></i>
+          </div>
+        </RevealY>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2023 | Designed and coded with ❤️️ by Sahil Lamba</p>
+        <RevealY>
+          <p>&copy; 2023 | Designed and coded with ❤️️ by Sahil Lamba</p>
+        </RevealY>
       </div>
     </StyledFooter>
   );

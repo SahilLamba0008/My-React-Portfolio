@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import resume from "./docs/Sahil_Resume.pdf";
+import RevealY from "./Transitions/RevealY";
+import RevealX from "./Transitions/RevealX";
 
 const StyledHero = styled.section`
   background-color: ${({ theme }) => theme.colors.primary};
@@ -35,6 +38,7 @@ const StyledHero = styled.section`
         .btn-cta {
           cursor: pointer;
           text-decoration: underline;
+          color: white;
           i {
             margin-left: 0.3rem;
             transition: margin-left 0.3s ease;
@@ -82,29 +86,52 @@ const StyledHero = styled.section`
 `;
 const Hero = () => {
   return (
-    <StyledHero>
+    <StyledHero id="hero">
       <div className="hero-wrapper max-width">
         <div className="hero-left">
           <h1>
-            Hi, I'm
-            <br />
-            <span>Sahil Lamba</span>
+            <RevealY>Hi, I'm</RevealY>
           </h1>
-          <p>
-            Passionate Full Stack Developer Ready to Craft Digital Experiences
-            with a Fresh Perspective.
-          </p>
+          <h1>
+            <RevealY>
+              <span>Sahil Lamba</span>
+            </RevealY>
+          </h1>
+          <RevealY>
+            <p>
+              Passionate Full Stack Developer Ready to Craft Digital Experiences
+              with a Fresh Perspective.
+            </p>
+          </RevealY>
           <div className="cta">
-            <button className="btn">
-              Download CV <i className="fa-solid fa-arrow-down"></i>
-            </button>
-            <span className="btn-cta">
-              Know more <i className="fa-solid fa-arrow-right"></i>
-            </span>
+            <RevealY width={"fit-content"}>
+              <a
+                href={resume}
+                target="_blank"
+                rel="noreferrer"
+                download="Sahil_Resume.pdf"
+              >
+                <button
+                  className={`btn btn-download`}
+                  // onClick={() => setIsResumeClicked(true)}
+                >
+                  Download CV <i className="fa-solid fa-arrow-down"></i>
+                </button>
+              </a>
+            </RevealY>
+            <RevealY>
+              <a href="#about">
+                <span className="btn-cta">
+                  Know more <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </a>
+            </RevealY>
           </div>
         </div>
         <div className="hero-right">
-          <img src="/assets/img1.png" alt="hero" className="hero-img" />
+          <RevealX direction={"from-right"}>
+            <img src="/assets/img1.png" alt="hero" className="hero-img" />
+          </RevealX>
         </div>
       </div>
     </StyledHero>

@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import RevealY from "./Transitions/RevealY";
+import RevealX from "./Transitions/RevealX";
+import { Link } from "react-router-dom";
 
 const StyledAbout = styled.section`
   margin-top: 10rem;
@@ -100,55 +103,100 @@ const StyledAbout = styled.section`
 
 const About = () => {
   return (
-    <StyledAbout>
+    <StyledAbout id="about">
       <div className="about-wrapper">
-        <div className="section-heading">About</div>
+        <div className="section-heading">
+          <RevealY>About</RevealY>
+        </div>
         <div className="about-content max-width">
           <div className="about-left">
-            <img src="/assets/img3.png" alt="about" className="about-img" />
+            <RevealX>
+              <img src="/assets/img3.png" alt="about" className="about-img" />
+            </RevealX>
           </div>
           <div className="about-right">
-            <h1>Curious about me? Here you have it :</h1>
-            <p>
-              I'm Sahil, a passionate self-proclaimed developer specializing in
-              full-stack development. My journey as a web developer began in
-              2019 during my college years, and my interest in web development
-              has since grown. I've explored a range of modern web technologies,
-              including JavaScript, React, Express, Node, MongoDB, MySQL,
-              Bootstrap, and HTML/CSS. This journey has led me to master
-              JavaScript frameworks and other cutting-edge technologies. Over
-              time, I've honed my problem-solving skills through coding
-              challenges, tackling multiple problems on platforms like LeetCode.
-              Simultaneously, I'm particularly passionate about translating
-              designs into interactive, pixel-perfect user interfaces.
-            </p>
-            <p>
-              My academic background includes a B.E. in Computer Engineering,
-              pursued from Chandigarh University, Mohali. I'm currently actively
-              seeking opportunities to contribute my skills and enthusiasm to a
-              forward-thinking company.
-            </p>
-            <p>
-              On a final note, Don't hesitate to reach out and say hello. I
-              promise, I don't bite 😉
-            </p>
+            <RevealY>
+              <h1>Curious about me? Here you have it :</h1>
+            </RevealY>
+            <RevealY>
+              <p>
+                I'm Sahil, a passionate self-proclaimed developer specializing
+                in full-stack development. My journey as a web developer began
+                in 2019 during my college years, and my interest in web
+                development has since grown. I've explored a range of modern web
+                technologies, including JavaScript, React, Express, Node,
+                MongoDB, MySQL, Bootstrap, and HTML/CSS. This journey has led me
+                to master JavaScript frameworks and other cutting-edge
+                technologies. Over time, I've honed my problem-solving skills
+                through coding challenges, tackling multiple problems on
+                platforms like LeetCode. Simultaneously, I'm particularly
+                passionate about translating designs into interactive,
+                pixel-perfect user interfaces.
+              </p>
+            </RevealY>
+            <RevealY>
+              <p>
+                My academic background includes a B.E. in Computer Engineering,
+                pursued from Chandigarh University, Mohali. I'm currently
+                actively seeking opportunities to contribute my skills and
+                enthusiasm to a forward-thinking company.
+              </p>
+            </RevealY>
+            <RevealY>
+              <p>
+                On a final note, Don't hesitate to reach out and say hello. I
+                promise, I don't bite 😉
+              </p>
+            </RevealY>
             <div className="connection-links">
-              <div className="linkedin">
-                <i className="fa-brands fa-linkedin-in connection-icons"></i>
-                <span>Linkedin</span>
-              </div>
-              <div className="github">
-                <i className="fa-brands fa-github connection-icons"></i>
-                <span>Github</span>
-              </div>
-              <div className="leetcode">
-                <i className="fa-solid fa-laptop-code connection-icons"></i>
-                <span>LeetCode</span>
-              </div>
-              <div className="gmail">
-                <i className="fa-solid fa-envelope connection-icons"></i>
-                <span>Gmail</span>
-              </div>
+              <RevealY>
+                <Link
+                  to={"https://www.linkedin.com/in/sahillamba0008"}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="linkedin">
+                    <i className="fa-brands fa-linkedin-in connection-icons"></i>
+                    <span>Linkedin</span>
+                  </div>
+                </Link>
+              </RevealY>
+              <RevealY delay={0.4}>
+                <Link
+                  to={"https://github.com/SahilLamba0008"}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="github">
+                    <i className="fa-brands fa-github connection-icons"></i>
+                    <span>Github</span>
+                  </div>
+                </Link>
+              </RevealY>
+              <RevealY delay={0.6}>
+                <Link
+                  to={"https://leetcode.com/08sahil_lamba/"}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="leetcode">
+                    <i className="fa-solid fa-laptop-code connection-icons"></i>
+                    <span>LeetCode</span>
+                  </div>
+                </Link>
+              </RevealY>
+              <RevealY delay={0.8}>
+                <Link
+                  to={"mailto:sahillamba003@gmail.com"}
+                  target="_blank"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="gmail">
+                    <i className="fa-solid fa-envelope connection-icons"></i>
+                    <span>Gmail</span>
+                  </div>
+                </Link>
+              </RevealY>
             </div>
           </div>
         </div>

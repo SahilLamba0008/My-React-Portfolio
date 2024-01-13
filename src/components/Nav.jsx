@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { navLinks } from "../constants/data";
 import styled from "styled-components";
+import RevealX from "./Transitions/RevealX";
+import RevealY from "./Transitions/RevealY";
 
 const Navbar = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.textPrimary};
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+
   .nav-wrapper {
     display: flex;
     align-items: center;
@@ -22,6 +30,10 @@ const Navbar = styled.div`
         list-style: none;
         gap: 1.5rem;
         font-size: 1rem;
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
         li {
           cursor: pointer;
           transition: color 0.3s ease-in;
@@ -75,23 +87,40 @@ const Navbar = styled.div`
 
 const Nav = () => {
   const [openMenu, setOpenMenu] = useState(false);
-   useEffect(() => {
-     if (openMenu) {
-       document.body.style.overflow = "hidden";
-     } else {
-       document.body.style.overflow = "auto";
-     }
-   }, [openMenu]);
+
+  useEffect(() => {
+    if (openMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openMenu]);
+
   return (
     <Navbar>
       <div className="nav-wrapper">
         <div className="nav-left">
-          <img src="/assets/logoS.png" alt="logoS" id="logo" style={{cursor: "pointer"}}/>
+          <RevealX>
+            <img
+              src="/assets/logoS.png"
+              alt="logoS"
+              id="logo"
+              style={{ cursor: "pointer" }}
+            />
+          </RevealX>
         </div>
         <div className="nav-right">
           <ul className={openMenu ? "active" : ""}>
             {navLinks.map((link, index) => (
-              <li key={link.id}>{link.name}</li>
+              <RevealY direction={"from-top"} delay={(index + 1) * 0.2}>
+                <a
+                  href={link.linkId}
+                  key={index}
+                  onClick={() => setOpenMenu(false)}
+                >
+                  <li>{link.name}</li>
+                </a>
+              </RevealY>
             ))}
           </ul>
         </div>

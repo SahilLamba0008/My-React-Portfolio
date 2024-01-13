@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { skills } from "../constants/data";
+import RevealY from "./Transitions/RevealY";
 
 const StyledSkills = styled.section`
   margin-top: 8rem;
@@ -35,15 +36,25 @@ const StyledSkills = styled.section`
 
 const Skills = () => {
   return (
-    <StyledSkills>
+    <StyledSkills id="skills">
       <div className="skills-wrapper">
-        <div className="section-heading">Skills</div>
+        <RevealY>
+          <div className="section-heading">Skills</div>
+        </RevealY>
         <div className="skills-content">
           {skills.map((skill, index) => {
             return (
-              <div key={index} className="skill-wrapper">
-                <img src={skill.image} alt={skill.name} className="skill-img"/>
-                <p className="skill-name">{skill.name}</p>
+              <div key={index}>
+                <RevealY delay={(index + 1) * 0.1}>
+                  <div className="skill-wrapper">
+                    <img
+                      src={skill.image}
+                      alt={skill.name}
+                      className="skill-img"
+                    />
+                    <p className="skill-name">{skill.name}</p>
+                  </div>
+                </RevealY>
               </div>
             );
           })}

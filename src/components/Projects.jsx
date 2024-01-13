@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { projects } from "../constants/data";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import RevealY from "./Transitions/RevealY";
+import RevealOpacity from "./Transitions/RevealOpacity";
+import { BsStars } from "react-icons/bs";
 
 const StyledProjects = styled.section`
   margin-top: 10rem;
@@ -13,7 +16,9 @@ const StyledProjects = styled.section`
     .projects-content {
       margin-top: 3rem;
       padding: 0 2rem;
-
+      .project-card {
+        margin: 0 1rem;
+      }
       .project-container {
         display: flex;
         gap: 1rem;
@@ -22,6 +27,7 @@ const StyledProjects = styled.section`
         background-color: #031d3e;
         max-width: 1024px;
         margin: 2rem auto;
+        margin-bottom: 4rem;
         border-radius: 1rem;
         padding: 1.5rem 2rem;
         .project-left {
@@ -29,13 +35,17 @@ const StyledProjects = styled.section`
         }
         .project-img {
           height: 20rem;
+          object-fit: contain;
         }
         .project-right {
           flex: 1;
           /* background-color: #020d32; */
           height: 100%;
           width: 100%;
+          display: flex;
+          flex-direction: column;
           .links {
+            align-self: flex-start;
             button {
               margin-right: 1rem;
               margin-bottom: 0.5rem;
@@ -49,6 +59,11 @@ const StyledProjects = styled.section`
         .project-description {
           color: ${({ theme }) => theme.colors.textSecondary};
           font-size: 1rem;
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-align: left;
         }
         .skills-container {
           margin: 1rem 0;
@@ -80,54 +95,63 @@ const StyledProjects = styled.section`
 
 const Projects = () => {
   return (
-    <StyledProjects>
+    <StyledProjects id="projects">
       <div className="projects-wrapper">
-        <div className="section-heading">Projects</div>
-        <div className="projects-content">
-          <Carousel
-            showArrows={false}
-            infiniteLoop={true}
-            useKeyboardArrows={true}
-            showThumbs={false}
-            autoPlay={true}
-            verticalSwipe={true}
-            showStatus={false}
-            swipeable={true}
-          >
-            {projects.map((project, index) => (
-              <div
-                className="project-container even"
-                key={`${project.name} ${index}`}
-              >
-                <div className="project-left">
-                  <img
-                    className="project-img"
-                    src={project.image}
-                    alt={project.name}
-                  />
-                </div>
-                <div className="project-right">
-                  <div className="project-title">{project.name}</div>
-                  <p className="project-description">{project.description}</p>
-                  <div className="skills-container">
-                    {project.skills.map((skill, index) => (
-                      <span
-                        className="skill"
-                        key={`${project.name} ${skill} ${index}`}
-                      >
-                        {skill}
-                      </span>
-                    ))}
+        <RevealY>
+          <div className="section-heading">Projects</div>
+        </RevealY>
+        <RevealOpacity delay={0.7}>
+          <div className="projects-content">
+            <Carousel
+              showArrows={false}
+              infiniteLoop={true}
+              useKeyboardArrows={true}
+              showThumbs={false}
+              autoPlay={true}
+              verticalSwipe={true}
+              showStatus={false}
+              swipeable={true}
+            >
+              {projects.map((project, index) => (
+                <div key={`${project.name} ${index}`} className="project-card">
+                  <div className="project-container">
+                    <div className="project-left">
+                      <img
+                        className="project-img"
+                        src={project.image}
+                        alt={project.name}
+                      />
+                    </div>
+                    <div className="project-right">
+                      <div className="project-title">{project.name}</div>
+                      <p className="project-description">
+                        {project.description}
+                      </p>
+                      <div className="skills-container">
+                        {project.skills.map((skill, index) => (
+                          <span
+                            className="skill"
+                            key={`${project.name} ${skill} ${index}`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="links">
+                        <button className="btn">
+                          Show More
+                          <BsStars />
+                        </button>
+                        {/* <button className="btn">Repo</button> */}
+                        {/* <button className="btn">Video</button> */}
+                      </div>
+                    </div>
                   </div>
-                  <div className="links">
-                    <button className="btn">Repo</button>
-                    <button className="btn">Video</button>
-                  </div>
                 </div>
-              </div>
-            ))}
-          </Carousel>
-        </div>
+              ))}
+            </Carousel>
+          </div>
+        </RevealOpacity>
       </div>
     </StyledProjects>
   );
