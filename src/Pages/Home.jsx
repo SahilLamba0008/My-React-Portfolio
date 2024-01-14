@@ -1,15 +1,8 @@
-import React from "react";
-import {
-  About,
-  Contact,
-  Footer,
-  Hero,
-  Nav,
-  Projects,
-  Skills,
-} from "../components";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { IoArrowUpOutline } from "react-icons/io5";
+import styled from "styled-components";
+import { About, Contact, Hero, Nav, Projects, Skills } from "../components";
 
 const StyledHome = styled.section`
   .home {
@@ -22,11 +15,11 @@ const StyledHome = styled.section`
     right: 2rem;
     bottom: 4rem;
     background-color: ${({ theme }) => theme.colors.secondary};
-    height: 3rem;
-    width: 3rem;
-    border-radius: 100%;
+    height: 3.2rem;
+    width: 3.2rem;
+    border-radius: 25%;
     padding: 1px;
-    color: white;
+    color: ${({ theme }) => theme.colors.primary};
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     border: 3px solid rgba(0, 0, 0, 0.5);
     cursor: pointer;
@@ -38,21 +31,50 @@ const StyledHome = styled.section`
 `;
 
 const Home = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const fadeInAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 0.2, transition: { duration: 2 } },
+  };
+
   return (
     <StyledHome>
       <div className="home" id="home">
-        <a href="#home">
-          <button className="scroller">
-            <IoArrowUpOutline size={30} />
-          </button>
-        </a>
+        <div>
+          {scrollY > 0 && (
+            <motion.a href="#home">
+              <motion.button
+                className="scroller"
+                whileHover={{ scale: 1.1, opacity: 1 }} // Set opacity to 1 during hover
+                whileTap={{ scale: 0.1 }}
+                {...fadeInAnimation}
+              >
+                <IoArrowUpOutline size={35} />
+              </motion.button>
+            </motion.a>
+          )}
+        </div>
         <Nav />
         <Hero />
         <About />
         <Projects />
         <Skills />
         <Contact />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </StyledHome>
   );

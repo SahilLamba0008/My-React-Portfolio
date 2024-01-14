@@ -113,12 +113,12 @@ const Nav = () => {
         <div className="nav-right">
           <ul className={openMenu ? "active" : ""}>
             {navLinks.map((link, index) => (
-              <RevealY direction={"from-top"} delay={(index + 1) * 0.2}>
-                <a
-                  href={link.linkId}
-                  key={index}
-                  onClick={() => setOpenMenu(false)}
-                >
+              <RevealY
+                direction={"from-top"}
+                delay={(index + 1) * 0.2}
+                key={index}
+              >
+                <a href={link.linkId} onClick={() => setOpenMenu(false)}>
                   <li>{link.name}</li>
                 </a>
               </RevealY>

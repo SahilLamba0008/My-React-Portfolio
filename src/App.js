@@ -6,6 +6,9 @@ import Home from "./Pages/Home";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProjectPage from "./Pages/ProjectPage";
+import { Footer } from "./components";
+// import { Nav } from "./components";
 
 const theme = {
   colors: {
@@ -26,9 +29,11 @@ const theme = {
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      {/* <Nav /> */}
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/project/:projectId" element={<ProjectPage />} />
         </Routes>
         <GlobalStyles />
         <ToastContainer
@@ -44,6 +49,7 @@ function App() {
           theme="dark"
           style={{ width: "200px", textAlign: "center" }}
         />
+        <Footer />
       </Router>
     </ThemeProvider>
   );

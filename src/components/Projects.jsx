@@ -7,6 +7,7 @@ import RevealY from "./Transitions/RevealY";
 import RevealOpacity from "./Transitions/RevealOpacity";
 import { BsStars } from "react-icons/bs";
 import RevealX from "./Transitions/RevealX";
+import { Link } from "react-router-dom";
 
 const StyledProjects = styled.section`
   margin-top: 10rem;
@@ -162,14 +163,16 @@ const Projects = () => {
                       </div>
                       <div className="links">
                         <RevealY>
-                          <button
-                            className={`btn ${isClicked ? "clicked" : ""}`}
-                            onMouseDown={handleMouseDown}
-                            onMouseUp={handleMouseUp}
-                          >
-                            Show More
-                            <BsStars />
-                          </button>
+                          <Link to={project.Link}>
+                            <button
+                              className={`btn ${isClicked ? "clicked" : ""}`}
+                              onMouseDown={handleMouseDown}
+                              onMouseUp={handleMouseUp}
+                            >
+                              Show More
+                              <BsStars />
+                            </button>
+                          </Link>
                         </RevealY>
                         {/* <button className="btn">Repo</button> */}
                         {/* <button className="btn">Video</button> */}
