@@ -27,7 +27,7 @@ const RevealX = ({ children, width, height, delay, direction }) => {
         }}
         initial="hidden"
         animate={animationController}
-        transition={{ duration: 0.5, delay: delay || 0.2 }}
+        transition={{ duration: 0.5, delay: delay || 0.1 }}
       >
         {children}
       </motion.div>

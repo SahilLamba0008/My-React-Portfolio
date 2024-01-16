@@ -56,25 +56,29 @@ const Navbar = styled.div`
         flex-direction: row;
         align-items: flex-start;
       }
+
       .nav-right ul {
-        display: none;
-        left: -100%;
-        transition: left 0.5s ease, opacity 0.5s ease;
+        opacity: 1; 
+        left: 100%;
+        scale: 0;
+        /* transition: all 0.3s ease-in-out; */
       }
+
       .nav-right ul.active {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 3rem;
-        position: absolute;
+        position: fixed;
         width: 100%;
         height: 100%;
         top: 0;
-        left: 0%;
+        left: 0;
+        scale: 1;
         background-color: ${({ theme }) => theme.colors.primary};
         font-size: 1.5rem;
-        opacity: 1;
+        opacity: 1; 
       }
       i {
         display: block;
@@ -113,17 +117,18 @@ const Nav = () => {
         <div className="nav-right">
           <ul className={openMenu ? "active" : ""}>
             {navLinks.map((link, index) => (
-              <>
-                <RevealY
-                  direction={"from-top"}
-                  delay={(index + 1) * 0.2}
-                  key={index}
+              <RevealY
+                direction={"from-top"}
+                delay={(index + 1) * 0.2}
+                key={index}
+              >
+                <a
+                  href={link.linkId}
+                  onClick={() => setOpenMenu((prev) => !prev)}
                 >
-                  <a href={link.linkId} onClick={() => setOpenMenu(false)}>
-                    <li>{link.name}</li>
-                  </a>
-                </RevealY>
-              </>
+                  <li>{link.name}</li>
+                </a>
+              </RevealY>
             ))}
           </ul>
         </div>

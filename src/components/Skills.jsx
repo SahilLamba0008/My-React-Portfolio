@@ -46,7 +46,7 @@ const Skills = () => {
             return (
               <div key={index}>
                 <RevealY
-                  delay={(index + 1) * 0.15}
+                  delay={(index + 1) * 0.1}
                   delayOverlay={(index + 1) * 0.12}
                 >
                   <div className="skill-wrapper">

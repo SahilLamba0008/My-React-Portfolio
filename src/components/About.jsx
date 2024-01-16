@@ -163,7 +163,7 @@ const About = () => {
                   </div>
                 </Link>
               </RevealY>
-              <RevealY delay={0.4}>
+              <RevealY delay={0.2}>
                 <Link
                   to={"https://github.com/SahilLamba0008"}
                   target="_blank"
@@ -175,7 +175,7 @@ const About = () => {
                   </div>
                 </Link>
               </RevealY>
-              <RevealY delay={0.6}>
+              <RevealY delay={0.3}>
                 <Link
                   to={"https://leetcode.com/08sahil_lamba/"}
                   target="_blank"
@@ -187,7 +187,7 @@ const About = () => {
                   </div>
                 </Link>
               </RevealY>
-              <RevealY delay={0.8}>
+              <RevealY delay={0.4}>
                 <Link
                   to={"mailto:sahillamba003@gmail.com"}
                   target="_blank"

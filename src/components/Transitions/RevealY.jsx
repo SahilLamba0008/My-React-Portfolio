@@ -40,7 +40,7 @@ const RevealY = ({
         }}
         initial="hidden"
         animate={animationController}
-        transition={{ duration: 0.5, delay: delay || 0.2 }}
+        transition={{ duration: 0.5, delay: delay || 0.05 }}
       >
         {children}
       </motion.div>

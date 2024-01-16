@@ -30,12 +30,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* <Nav /> */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/project/:projectId" element={<ProjectPage />} />
-        </Routes>
-        <GlobalStyles />
         <ToastContainer
           position="top-center"
           autoClose={1000}
@@ -49,6 +43,12 @@ function App() {
           theme="dark"
           style={{ width: "200px", textAlign: "center" }}
         />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:projectId" element={<ProjectPage />} />
+        </Routes>
+        <GlobalStyles />
         <Footer />
       </Router>
     </ThemeProvider>

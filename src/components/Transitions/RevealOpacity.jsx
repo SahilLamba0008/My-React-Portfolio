@@ -27,7 +27,7 @@ const RevealOpacity = ({ children, width, height, delay }) => {
         }}
         initial="hidden"
         animate={animationController}
-        transition={{ duration: 0.5, delay: delay || 0.2 }}
+        transition={{ duration: 0.5, delay: delay || 0.4 }}
       >
         {children}
       </motion.div>

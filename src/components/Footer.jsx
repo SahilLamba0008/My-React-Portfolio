@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import RevealOpacity from "./Transitions/RevealOpacity";
 import RevealY from "./Transitions/RevealY";
-import { Flip, toast } from "react-toastify";
+import { Zoom, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const StyledFooter = styled.section`
@@ -83,19 +83,62 @@ const Footer = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyClick = (value) => {
-    navigator.clipboard.writeText(value);
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(value)
+        .then(() => {
+          handleCopySuccess(value); // Pass the 'value' parameter here
+        })
+        .catch((error) => {
+          handleCopyError(error);
+        });
+    } else {
+      handleFallbackCopy(value);
+    }
+  };
+
+  const handleFallbackCopy = (value) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = value;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      const successful = document.execCommand("copy");
+      if (successful) {
+        handleCopySuccess(value); // Pass the 'value' parameter here
+      } else {
+        handleCopyError("Fallback copy failed");
+      }
+    } catch (err) {
+      handleCopyError(err);
+    }
+
+    document.body.removeChild(textArea);
+  };
+
+  const handleCopySuccess = (value) => {
+    console.log(value);
     setIsCopied(true);
-    console.log(isCopied);
-    toast("Text Copied!💙", {
-      transition: Flip,
+    console.log("Text copied:", value);
+    toast("Text Copied! 💙", {
+      transition: Zoom,
       theme: "colored",
+      position: "top-right",
     });
 
-    // Reset the 'isCopied' state after some time
     setTimeout(() => {
       setIsCopied(false);
     }, 1500);
   };
+
+  const handleCopyError = (error) => {
+    console.error("Copy failed:", error);
+    toast("Failed to copy text. Please try manually.");
+  };
+  console.log(isCopied);
+
   return (
     <StyledFooter>
       <RevealOpacity>
