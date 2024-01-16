@@ -106,7 +106,9 @@ const About = () => {
     <StyledAbout id="about">
       <div className="about-wrapper">
         <div className="section-heading">
-          <RevealY>About</RevealY>
+          <RevealY>
+            <div>About</div>
+          </RevealY>
         </div>
         <div className="about-content max-width">
           <div className="about-left">

@@ -52,9 +52,9 @@ const Navbar = styled.div`
 
     @media (max-width: ${({ theme }) => theme.screens.sm}) {
       .nav-wrapper {
+        position: relative;
         flex-direction: row;
         align-items: flex-start;
-        position: relative;
       }
       .nav-right ul {
         display: none;
@@ -113,15 +113,17 @@ const Nav = () => {
         <div className="nav-right">
           <ul className={openMenu ? "active" : ""}>
             {navLinks.map((link, index) => (
-              <RevealY
-                direction={"from-top"}
-                delay={(index + 1) * 0.2}
-                key={index}
-              >
-                <a href={link.linkId} onClick={() => setOpenMenu(false)}>
-                  <li>{link.name}</li>
-                </a>
-              </RevealY>
+              <>
+                <RevealY
+                  direction={"from-top"}
+                  delay={(index + 1) * 0.2}
+                  key={index}
+                >
+                  <a href={link.linkId} onClick={() => setOpenMenu(false)}>
+                    <li>{link.name}</li>
+                  </a>
+                </RevealY>
+              </>
             ))}
           </ul>
         </div>

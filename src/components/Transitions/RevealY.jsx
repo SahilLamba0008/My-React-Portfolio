@@ -3,12 +3,12 @@ import { motion, useInView, useAnimation } from "framer-motion";
 
 const RevealY = ({
   children,
-  width,
+  widthContent,
   height,
   delay,
   direction,
-  background,
-  delayOverlay,
+  // background,
+  // delayOverlay,
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -27,7 +27,7 @@ const RevealY = ({
     <div
       style={{
         position: "relative",
-        width: { width },
+        width: { widthContent },
         height: { height },
         overflow: "hidden",
       }}
@@ -44,7 +44,7 @@ const RevealY = ({
       >
         {children}
       </motion.div>
-      <motion.div
+      {/* <motion.div
         variants={{
           hidden: { left: 0 },
           visible: { left: "100%" },
@@ -61,9 +61,9 @@ const RevealY = ({
           zIndex: 1000,
           background: background || "cyan",
           borderRadius: "0.7rem",
-          width: "100%",
+          width: "fit-content",
         }}
-      />
+      /> */}
     </div>
   );
 };
