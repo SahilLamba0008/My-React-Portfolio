@@ -18,8 +18,6 @@ const StyledHome = styled.section`
     height: 3.2rem;
     width: 3.2rem;
     border-radius: 25%;
-    display: flex;
-    align-items: center;
     padding: 1px;
     color: ${({ theme }) => theme.colors.primary};
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
