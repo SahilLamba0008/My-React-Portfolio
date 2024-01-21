@@ -39,7 +39,7 @@ export const GlobalStyles = createGlobalStyle`
       color: ${({ theme }) => theme.colors.primaryAlternate};
       overflow: hidden;
       position: relative;
-      transition: all 0.5s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
 
     .btn::before,
@@ -50,7 +50,7 @@ export const GlobalStyles = createGlobalStyle`
       height: 0;
       background: linear-gradient(45deg, ${({ theme }) =>
         theme.colors.primaryAlternate}, ${({ theme }) => theme.colors.primary});
-      transition: all 0.5s ease-in-out;
+      transition: all 0.3s ease-in-out;
       z-index: 0;
     }
 

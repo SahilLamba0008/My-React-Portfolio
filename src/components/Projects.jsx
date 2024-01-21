@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { projects } from "../constants/data";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -29,7 +29,6 @@ const StyledProjects = styled.section`
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        /* background-color: #031d3e; */
         max-width: 1024px;
         margin: 2rem auto;
         margin-bottom: 4rem;
@@ -48,28 +47,26 @@ const StyledProjects = styled.section`
           cursor: pointer;
           top: 48%;
           left: 52%;
-          transform: translate(-50%, -11%) rotate(3deg);
+          transform: translate(-50%, -12%) rotate(3deg);
           scale: 1.08;
         }
         .project-img {
-          /* height: 100%; */
-          width: 80%;
+          width: 85%;
           margin: 0 auto;
           object-fit: contain;
+          aspect-ratio: 3 / 2;
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -10%) rotate(1deg);
-          /* transform: rotate(1deg); */
+          transform: translate(-50%, -15%) rotate(1deg);
           z-index: 0;
-          padding: 0.5rem;
           border-radius: 0.8rem;
           background-color: #000;
+          padding: 0 2rem;
           transition: all 0.2s ease-in-out;
         }
         .project-right {
           flex: 1;
-          /* background-color: #020d32; */
           height: 100%;
           width: 100%;
           display: flex;
@@ -95,21 +92,6 @@ const StyledProjects = styled.section`
           overflow: hidden;
           text-align: left;
         }
-        /* .skills-container {
-          margin: 1rem 0;
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-
-          .skill {
-            background-color: cyan;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            color: black;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-          }
-        } */
         .skills-container-2 {
           margin: 1rem 0;
           display: flex;
@@ -155,12 +137,22 @@ const Projects = () => {
 
   const handleMouseUp = () => {
     setIsClicked(true);
-
-    // After 500 milliseconds, remove the 'clicked' class
     setTimeout(() => {
       setIsClicked(false);
     }, 500);
   };
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    
+    if (hash) {
+      const targetElement = document.getElementById(hash.substring(1));
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
+
   return (
     <StyledProjects id="projects">
       <div className="projects-wrapper">
@@ -169,28 +161,20 @@ const Projects = () => {
         </RevealY>
         <RevealOpacity delay={0.2}>
           <div className="projects-content">
-            {/* <Carousel
-              showArrows={false}
-              infiniteLoop={true}
-              useKeyboardArrows={true}
-              showThumbs={false}
-              autoPlay={true}
-              verticalSwipe={true}
-              showStatus={false}
-              swipeable={true}
-            > */}
             {projects.map((project, index) => (
               <div key={`${project.name} ${index}`} className="project-card">
                 <div className="project-container">
                   <div className="project-left">
                     <RevealX>
-                      <div className="project-img-container">
-                        <img
-                          className="project-img"
-                          src={project.image}
-                          alt={project.name}
-                        />
-                      </div>
+                      <Link to={project.Link}>
+                        <div className="project-img-container">
+                          <img
+                            className="project-img"
+                            src={project.image}
+                            alt={project.name}
+                          />
+                        </div>
+                      </Link>
                     </RevealX>
                   </div>
                   <div className="project-right">
@@ -206,7 +190,6 @@ const Projects = () => {
                           >
                             <div className="skill-2">
                               {skill}
-                              {/* {index < project.skills.length - 1 && ", "} */}
                             </div>
                           </RevealY>
                         </div>
@@ -217,19 +200,6 @@ const Projects = () => {
                         {project.description}
                       </p>
                     </RevealY>
-                    {/* <div className="skills-container">
-                      {project.skills.map((skill, index) => (
-                        <div key={`${project.name} ${skill} ${index}`}>
-                          <RevealY
-                            delay={(index + 1) * 0.1}
-                            delayOverlay={(index + 1) * 0.12}
-                          >
-                            <div className="skill">{skill}</div>
-                          </RevealY>
-                        </div>
-                      ))}
-                    </div> */}
-
                     <div className="links">
                       <RevealY>
                         <Link to={project.Link}>
@@ -243,14 +213,11 @@ const Projects = () => {
                           </button>
                         </Link>
                       </RevealY>
-                      {/* <button className="btn">Repo</button> */}
-                      {/* <button className="btn">Video</button> */}
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-            {/* </Carousel> */}
           </div>
         </RevealOpacity>
       </div>

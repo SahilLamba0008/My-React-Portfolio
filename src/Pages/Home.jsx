@@ -18,12 +18,18 @@ const StyledHome = styled.section`
     height: 3.2rem;
     width: 3.2rem;
     border-radius: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1px;
     color: ${({ theme }) => theme.colors.primary};
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     border: 3px solid rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    @media (max-width: ${({ theme }) => theme.screens.sm}) {
+      display: none;
+  }
   }
   .scroller:hover {
     opacity: 1;

@@ -6,6 +6,7 @@ import { RiArrowGoBackLine } from "react-icons/ri";
 import { FaGithub } from "react-icons/fa";
 import { PiVideoFill } from "react-icons/pi";
 import RevealY from "../components/Transitions/RevealY";
+import KeyPoints from "../components/KeyPoints";
 
 const StyledProjectPage = styled.section`
   background-color: ${({ theme }) => theme.colors.primary};
@@ -26,11 +27,25 @@ const StyledProjectPage = styled.section`
   .back-btn:hover {
     opacity: 1;
   }
+  .conatiner-1 {
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 70%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
   .project-img-container {
     width: 100%;
     height: 70vh;
     position: relative;
-    .project-cover-text {
+    .project-img {
+      opacity: 0.5;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .project-cover-text {
       position: absolute;
       font-size: 7rem;
       color: ${({ theme }) => theme.colors.secondary};
@@ -39,14 +54,8 @@ const StyledProjectPage = styled.section`
       font-weight: bold;
       line-height: 0.9;
       opacity: 1;
+      margin-right: 1rem;
     }
-    .project-img {
-      opacity: 0.3;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
   .btn-container,
   .btn-project-description {
     display: flex;
@@ -68,12 +77,50 @@ const StyledProjectPage = styled.section`
     border-bottom: 4px solid ${({ theme }) => theme.colors.secondary};
   }
   h1#project-description {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.4);
     margin-top: 0.5rem;
-    margin-right: 10rem;
+    margin-right: 8rem;
     font-weight: normal;
   }
+  .section-heading{
+    margin-top: 3rem;
+  }
+  .skills-container-2 {
+    margin: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    
+    .skill-2 {
+      border-radius: 30px;
+      color: black;
+      background-color: cyan;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    }
+    .skill-wrapper{
+      padding: 0.1rem;
+      background-color: #fff;
+      border-radius: 0.8rem;
+      /* box-shadow: -5px -5px 9px #ffffff73, 5px 5px 7px #5e687949; */
+    }
+    .skill-img{
+      aspect-ratio: 4/3;
+      object-fit: contain;
+      width: 6rem;
+      height: 100%;
+      padding: 0.7rem;
+      border-radius: 0.8rem;
+      background-color: #fff;
+      box-shadow: inset -5px -5px 9px #ffffff73, inset 5px 5px 7px #5e687949;
+    }
+  }
+
   .project-video-container {
     display: flex;
     justify-content: center;
@@ -81,24 +128,38 @@ const StyledProjectPage = styled.section`
     margin-top: 2rem;
     margin-bottom: 4rem;
     .project-video {
-      width: 70%;
+      width: 75%;
+      aspect-ratio: 16/9;
+      object-fit: contain;
       border-radius: 0.8rem;
+      outline: none;
+      border: none;
       margin: 0 auto;
     }
   }
-  /* position: relative;
-  .container-1 {
-    position: sticky;
-    top: 0;
-    z-index: 1;
+  @media (max-width: ${({ theme }) => theme.screens.sm}) {
+    .project-cover-text {
+      font-size: 5rem;
+      left: 1rem;
+    }
+    .project-img-container {
+      height: 40vh;
+    }
+    .project-hero {
+      flex-direction: column;
+    }
+    h1#project-description {
+      margin-right: 0;
+    }
+    .project-video-container {
+      .project-video {
+        width: 90%;
+      }
+    }
+    .back-btn{
+      opacity: 1;
+    }
   }
-  .container-2 {
-    position: sticky;
-    top: 0;
-    background-color: ${({ theme }) => theme.colors.primary};
-    padding: 5rem 0;
-    z-index: 2;
-  } */
 `;
 
 const ProjectPage = () => {
@@ -106,6 +167,7 @@ const ProjectPage = () => {
   const [projectData, setProjectData] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (projectId) {
       const project = projects.find((project) => project.id === projectId);
       if (project) {
@@ -124,9 +186,8 @@ const ProjectPage = () => {
 
   return (
     <StyledProjectPage>
-      <Link to={"/"}>
+      <Link to={"/#projects"}>
         <button className="btn back-btn">
-          {/* Go Back{" "} */}
           <div>
             <RiArrowGoBackLine size={27} />
           </div>
@@ -148,42 +209,32 @@ const ProjectPage = () => {
       <div className="container-2">
         <div className="project-hero max-width">
           <div>
-            {/* <h1
-            style={{ color: "white", fontSize: "3rem", whiteSpace: "nowrap" }}
-          >
-            {projectData.name}
-          </h1> */}
-            {/* <h1
-            style={{
-              color: "white",
-              fontSize: "3rem",
-              opacity: "0.4",
-              marginTop: "-4.2rem",
-              textDecoration: "underline",
-              textDecorationColor: "cyan",
-              textDecorationThickness: "6px",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {projectData.name}
-          </h1> */}
             <h1 id="project-description">{projectData.description}</h1>
           </div>
           <div className="btn-container">
             {projectData.LiveLink && (
-              <Link to={projectData.LiveLink} target="_blank">
+              <Link
+                to={projectData.LiveLink}
+                target="_blank"
+                style={{ textDecoration: "none" }}
+              >
                 <button className="btn btn-project-description">
                   Live <FaGithub size={20} />
                 </button>
               </Link>
             )}
-            <Link to={projectData.RepoLink} target="_blank">
+            <Link
+              to={projectData.RepoLink}
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
               <button className="btn btn-project-description">
                 Github <FaGithub size={20} />
               </button>
             </Link>
             {!projectData.LiveLink && (
-              <Link to={projectData.VideoLink} target="_blank">
+              <Link to={projectData.VideoLink}
+              style={{ textDecoration: "none" }}>
                 <button className="btn btn-project-description">
                   Video <PiVideoFill size={23} />
                 </button>
@@ -191,11 +242,27 @@ const ProjectPage = () => {
             )}
           </div>
         </div>
+        <div className="section-heading section-heading-skills">
+          <RevealY>Skills</RevealY>
+        </div>
+        <div className="skills-container-2">
+          {projectData.skillsSvg?.map((skill, index) => (
+            <div key={`${projectData.name} ${skill} ${index}`} className="skill-wrapper">
+              <RevealY
+                delay={(index + 1) * 0.2}
+                delayOverlay={(index + 1) * 0.15}
+              >
+                <img src={skill} alt={skill} className="skill-img"/>
+                {/* <div className="skill-2">{skill}</div> */}
+              </RevealY>
+            </div>
+          ))}
+        </div>
         <div className="project-key-points">
           <div className="section-heading">
             <RevealY>Key Points</RevealY>
+            <KeyPoints keyPoints={projectData.keyPoints} />
           </div>
-          <p>{projectData.keyPoints}Kuch Bhi</p>
         </div>
         <div className="project-video">
           <div className="section-heading">
@@ -203,7 +270,13 @@ const ProjectPage = () => {
             <div></div>
           </div>
           <div className="project-video-container">
-            <video src="path/to/video.mp4" controls className="project-video" />
+            <iframe
+              id="project-video"
+              title="project-video"
+              src={projectData.VideoLink}
+              allowFullScreen
+              className="project-video"
+            />
           </div>
         </div>
       </div>
