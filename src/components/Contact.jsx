@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import RevealY from "./Transitions/RevealY";
 import RevealX from "./Transitions/RevealX";
+import emailjs from '@emailjs/browser';
+import { Zoom, toast } from "react-toastify";
 
 const StyledContact = styled.section`
   margin-top: 10rem;
@@ -57,6 +59,7 @@ const StyledContact = styled.section`
 
 const Contact = () => {
   const [isClicked, setIsClicked] = useState(false);
+  const form = useRef();
 
   const handleMouseDown = () => {
     setIsClicked(true);
@@ -71,10 +74,28 @@ const Contact = () => {
     }, 500);
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_gn3g3yg', 'template_d1icl3s', form.current, 'mgDNCBaq2VOjdVvau')
+      .then((result) => {
+          console.log(result.text);
+          e.target.reset();
+          toast('Thank you for contacting me. ❤️', {
+            transition: Zoom,
+            theme: "colored",
+            position: "top-right",
+          });
+      }, (error) => {
+          console.log(error.text);
+          toast('Failed to send email. ❌',{
+            transition: Zoom,
+            theme: "colored",
+            position: "top-right",
+          });
+      });
   };
-  
+
   return (
     <StyledContact id="contact">
       <RevealY>
@@ -90,13 +111,13 @@ const Contact = () => {
               / Can Also Mail directly at : sahillamba003@gmail.com{" "}
             </h3>
           </RevealX>
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={sendEmail} ref={form}>
             <RevealY>
               <label htmlFor="name">Name:</label>
               <input
                 type="text"
                 id="name"
-                name="name"
+                name="user_name"
                 placeholder="John Doe"
                 className="form-input"
                 autoComplete="on"
@@ -107,7 +128,7 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
-                name="email"
+                name="user_email"
                 placeholder="abc@gmail.com"
                 className="form-input"
                 autoComplete="on"
@@ -134,7 +155,6 @@ const Contact = () => {
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 style={{ width: "100%" }}
-                onClick={handleFormSubmit}
               >
                 Submit
               </button>

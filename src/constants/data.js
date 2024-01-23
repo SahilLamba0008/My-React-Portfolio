@@ -28,6 +28,39 @@ export const navLinks = [
 
 export const projects = [
   {
+    id: "appManager",
+    name: "App Manager",
+    description:
+      "Developed a feature-rich Task Manager app using TypeScript, NextJS, Server Actions, MongoDB, and Tailwind. Implemented CRUD functionalities, RESTful APIs, Toastify notifications, Cloudinary for user images, Zod for form validation, and token-based authentication for enhanced security.",
+    skills: [
+      "NextJS-14",
+      "TypeScript",
+      "JSON Web Token",
+      "App Router",
+      "Server Actions",
+      "NodeJS",
+      "REST Api",
+      "MongoDB",
+      "Cloudinary",
+      "Git",
+    ],
+    image: "/assets/app.png",
+    coverImage: "/assets/appmanager.png",
+    Link: "/project/appManager",
+    RepoLink: "https://github.com/SahilLamba0008/App-Manager-fullstack",
+    LiveLink: "https://app-manager-next.vercel.app/",
+    VideoLink: "https://youtube.com/embed/zNP13G8UodE?rel=0",
+    keyPoints: [
+      "Created a Task Manager app with CRUD operations for streamlined task organization.",
+      "Implemented RESTful APIs for seamless frontend-backend communication.",
+      "Implemented token-based authentication and Next.js middlewares for a secure system.",
+      "Enhanced UX with Toastify notifications and Cloudinary for user profile images.",
+      "Ensured password encryption with bcrypt for secure storage of user information.",
+    ],
+    skillsSvg: ["/assets/svgs/next-js.svg", "/assets/svgs/typescript.svg","/assets/svgs/nodejs.svg", "/assets/svgs/jwt.svg", "/assets/svgs/mongodb.svg", "/assets/svgs/tailwind.svg", "/assets/svgs/git.svg"],
+    even: false,
+  },
+  {
     id: "swiftmessenger",
     name: "Swift Messenger",
     description:
@@ -46,7 +79,7 @@ export const projects = [
     Link: "/project/swiftmessenger",
     RepoLink: "https://github.com/SahilLamba0008/Swift-Messenger",
     LiveLink: "",
-    VideoLink: "https://youtube.com/embed/Xc9gvr9XpmQ?rel=0",
+    VideoLink: "https://youtube.com/embed/YDqwGb7GTys?rel=0",
     keyPoints: [
       "Developed a messaging app supporting one-on-one and group conversations using the MERN stack.",
       "Integrated real-time communication features powered by Socket.io.",
@@ -56,6 +89,36 @@ export const projects = [
       "Enabled administrators to add and remove users from group chats.",
     ],
     skillsSvg: ["/assets/svgs/socket-io.svg", "/assets/svgs/react.svg", "/assets/svgs/javascript.svg","/assets/svgs/nodejs.svg", "/assets/svgs/express.svg", "/assets/svgs/jwt.svg", "/assets/svgs/mongodb.svg", "/assets/svgs/postman.svg", "/assets/svgs/axios.svg",  "/assets/svgs/chakra-ui.png", "/assets/svgs/git.svg"],
+    even: false,
+  },
+  {
+    id: "fitnessMatch",
+    name: "Fitness Match",
+    description:
+      "Created Fitness Match a full-stack application using ReactJS, NodeJS, ExpressJS, MongoDB, and RestAPI. Revolutionized fitness connections with a Tinder-inspired swiping approach for instant matches. Ensured security with JWT and bcrypt, while boosting interaction through integrated chat functionality.",
+    skills: [
+      "ReactJS",
+      "NodeJS",
+      "ExpressJS",
+      "MongoDB",
+      "REST Api",
+      "JWT",
+      "Postman",
+      "Git",
+    ],
+    image: "/assets/fitness.png",
+    coverImage: "/assets/fitnessmatch.png",
+    Link: "/project/fitnessMatch",
+    RepoLink: "https://github.com/SahilLamba0008/Fitness_Match",
+    LiveLink: "",
+    VideoLink: "https://youtube.com/embed/L7eUWp-W8M0?rel=0",
+    keyPoints: [
+      "Developed Fitness Match using ReactJS, NodeJS, ExpressJS, MongoDB, and RestAPI.",
+      "Introduced a Tinder-inspired swiping mechanism for instant matches and recycled profiles.",
+      "Implemented robust authentication with JWT and ensured password encryption using bcrypt.",
+      "Enhanced communication between fitness partners with integrated chat functionality.",
+    ],
+    skillsSvg: ["/assets/svgs/react.svg", "/assets/svgs/javascript.svg","/assets/svgs/nodejs.svg", "/assets/svgs/express.svg", "/assets/svgs/jwt.svg", "/assets/svgs/mongodb.svg", "/assets/svgs/postman.svg", "/assets/svgs/axios.svg", "/assets/svgs/git.svg"],
     even: false,
   },
   {
@@ -105,7 +168,7 @@ export const projects = [
     Link: "/project/dinehub",
     RepoLink: "https://github.com/SahilLamba0008/Dine-Hub",
     LiveLink: "",
-    VideoLink: "https://youtube.com/embed/Xc9gvr9XpmQ?rel=0",
+    VideoLink: "https://youtube.com/embed/uO8FKW78WSE?rel=0",
     keyPoints: [
       "Developed an interactive food ordering app featuring dynamic components like carousels for enhanced user engagement using React , JavaScript , and CSS.",
       "Integrated advanced filtering features, interactive user design and state management using React Hooks and JavaScript Event-Handling.",

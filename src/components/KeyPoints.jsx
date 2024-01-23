@@ -6,6 +6,7 @@ const StyledKeyPoints = styled.section`
 .project-keypoints-wrapper{
   margin: 0.5rem 2rem  0 3rem;
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 .project-keypoints{
@@ -30,7 +31,7 @@ const KeyPoints = ({ keyPoints }) => {
       <div className='max-width'>
         {keyPoints?.map((keyPoint, index) => {
           return (
-            <div className='project-keypoints-wrapper'>
+            <div className='project-keypoints-wrapper' key={index}>
             {"-"}
             <div
             className="project-keypoints"
