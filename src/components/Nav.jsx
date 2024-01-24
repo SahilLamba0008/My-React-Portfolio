@@ -101,6 +101,11 @@ const Nav = () => {
     }
   }, [openMenu]);
 
+  const handleMenuClick = () => {
+    if(openMenu === false) return;
+    setOpenMenu(false);
+  }
+
   return (
     <Navbar>
       <div className="nav-wrapper">
@@ -124,7 +129,7 @@ const Nav = () => {
               >
                 <a
                   href={link.linkId}
-                  onClick={() => setOpenMenu((prev) => !prev)}
+                  onClick={handleMenuClick}
                 >
                   <li>{link.name}</li>
                 </a>
@@ -134,7 +139,7 @@ const Nav = () => {
         </div>
         <i
           className={openMenu ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
-          onClick={() => setOpenMenu((prev) => !prev)}
+          onClick={() => setOpenMenu((prev)=> !prev)}
         ></i>
       </div>
     </Navbar>
